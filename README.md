@@ -16,7 +16,7 @@ import zio.interop.twitter._
 import zio.{ Console, Exit, ZIO, URIO, ZIOAppDefault }
 
 object Example extends ZIOAppDefault {
-  def run: URIO[Console, Exit[Throwable, Unit]] = {
+  def run: URIO[Any, Exit[Throwable, Unit]] = {
     val program =
       for {
         _        <- printLine("Hello! What is your name?")
