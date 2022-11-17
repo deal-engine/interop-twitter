@@ -29,6 +29,7 @@ package object twitter {
               case Return(a) => cb(ZIO.succeedNow(a))
               case Throw(e)  => cb(ZIO.fail(e))
             }
+            ()
           }).onInterrupt {
             ZIO.succeed(future.raise(new FutureCancelledException)) *>
               ZIO.async { (cb: UIO[Unit] => Unit) =>
@@ -36,6 +37,7 @@ package object twitter {
                   case Return(_) => cb(ZIO.unit)
                   case Throw(_)  => cb(ZIO.unit)
                 }
+                ()
               }
           }
         }
